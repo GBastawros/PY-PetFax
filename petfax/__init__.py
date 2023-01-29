@@ -1,18 +1,22 @@
-from . import pet
+# config                    
 from flask import Flask
 
-
+# factory
 def create_app():
     app = Flask(__name__)
 
-    # Home Route
+    # index route
     @app.route('/')
-    def hello():
+    def index(): 
         return 'Hello, PetFax!'
 
-
-    # register the pet blueprint
+    # register pet blueprint 
+    from . import pet 
     app.register_blueprint(pet.bp)
 
-    # return the app
+    # register fact blueprint 
+    from . import fact
+    app.register_blueprint(fact.bp)
+
+    # return the app 
     return app
